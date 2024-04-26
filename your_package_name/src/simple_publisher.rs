@@ -62,8 +62,8 @@ fn main() -> Result<(), RclrsError> {
     let publisher_other_thread = Arc::clone(&publisher);
     let mut count: i32 = 0;
     thread::spawn(move || loop {
-            thread::sleep(Duration::from_millis(1000));
-            count = publisher_other_thread.publish_data(count).unwrap();
+        thread::sleep(Duration::from_millis(1000));
+        count = publisher_other_thread.publish_data(count).unwrap();
     });
     rclrs::spin(publisher.node.clone())
 }

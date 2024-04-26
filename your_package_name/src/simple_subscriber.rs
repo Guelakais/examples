@@ -56,8 +56,8 @@ fn main() -> Result<(), RclrsError> {
     let subscription = Arc::new(SimpleSubscriptionNode::new(&context).unwrap());
     let subscription_other_thread = Arc::clone(&subscription);
     thread::spawn(move || loop {
-            thread::sleep(Duration::from_millis(1000));
-            subscription_other_thread.data_callback().unwrap()
+        thread::sleep(Duration::from_millis(1000));
+        subscription_other_thread.data_callback().unwrap()
     });
     rclrs::spin(subscription.node.clone())
 }
